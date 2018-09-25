@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dwr PUBLIC "-//GetAhead Limited//DTD Direct Web Remoting 2.0//EN" "http://getahead.org/dwr/dwr20.dtd">
+<!-- DWR(Direct Web Remoting)是一个WEB远程调用框架.利用这个框架可以让AJAX开发变得很简单.利用DWR可以在客户端利用JavaScript直接调用服务端的Java方法并返回值给
+JavaScript就好像直接本地客户端调用一样(DWR根据Java类来动态生成JavaScrip代码) -->
+<dwr>
+     <allow>
+          <create creator="spring" javascript="loginService">
+              <param name="beanName" value="loginService"></param>
+          </create>
+          
+          <create creator="spring" javascript="catelogService">
+              <param name="beanName" value="catelogService"></param>
+          </create>
+          <convert converter="bean" match="com.cn.entity.TCatelog">
+              <param name="include" value="catelogId,catelogName"></param>
+          </convert>
+          
+          
+          <create creator="spring" javascript="cartService">
+              <param name="beanName" value="cartService"></param>
+          </create>
+     </allow>
+</dwr>

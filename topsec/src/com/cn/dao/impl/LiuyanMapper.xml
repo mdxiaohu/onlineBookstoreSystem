@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<!-- 还有一个很重要的作用，使用动态代理开发DAO，1. namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="LiuyanMapper">
+
+	<select id="findAll" resultType="com.cn.entity.TLiuyan">
+		select * from t_liuyan
+	</select>
+
+	<insert id="save" parameterType="com.cn.entity.TLiuyan">
+
+		insert into
+		t_liuyan(liuyanId,liuyanTitle,liuyanContent,liuyanDate,liuyanUser)
+		values
+		(liuyan_id.nextval,
+		#{liuyanTitle,jdbcType=VARCHAR},
+		#{liuyanContent,jdbcType=VARCHAR},
+		#{liuyanDate,jdbcType=VARCHAR},
+		#{liuyanUser,jdbcType=VARCHAR})
+	</insert>
+	<select id="findById" resultType="com.cn.entity.TLiuyan"
+		parameterType="Integer">
+		select * from t_liuyan where liuyanId=#{liuyanId}
+	</select>
+	<delete id="deleteById" parameterType="Integer">
+		delete from t_liuyan where liuyanId=#{liuyanId}
+	</delete>
+
+</mapper>

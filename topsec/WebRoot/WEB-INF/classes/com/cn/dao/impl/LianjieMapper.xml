@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<!-- 还有一个很重要的作用，使用动态代理开发DAO，1. namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="LianjieMapper">
+	<!-- 根据用户id查询用户 -->
+	<!-- 2. id必须和Mapper接口方法名一致 -->
+	<!-- 3. parameterType必须和接口方法参数类型一致 -->
+	<!-- 4. resultType必须和接口方法返回值类型一致 -->
+
+
+	<select id="findAll" resultType="com.cn.entity.Tlianjie">
+		select * from t_lianjie
+
+	</select>
+	<select id="findById" parameterType="Integer" resultType="com.cn.entity.Tlianjie">
+		select * from t_lianjie by lianjieId=#{lianjieId}
+
+	</select>
+	
+	<delete id="deletebyId" parameterType="Integer">
+	
+	delete t_lianjie where lianjieId=#{lianjieId}
+	
+	</delete>
+	<insert id="save" parameterType="com.cn.entity.Tlianjie">
+
+		insert into
+		t_lianjie(lianjieid,lianjieweb,lianjiename)
+		values
+		(lianjie_id.nextval,
+		#{lianjieWeb,jdbcType=VARCHAR},
+		#{lianjieName,jdbcType=VARCHAR})
+	</insert>
+
+
+</mapper>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<!-- 还有一个很重要的作用，使用动态代理开发DAO，1. namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="goodsMapper">
+	<!-- 根据用户id查询用户 -->
+	<!-- 2. id必须和Mapper接口方法名一致 -->
+	<!-- 3. parameterType必须和接口方法参数类型一致 -->
+	<!-- 4. resultType必须和接口方法返回值类型一致 -->
+	<select id="Find" resultType="com.cn.entity.TGoods"
+		parameterType="java.lang.Integer">
+		select * from t_goods where goodsDel='no' and goodsCatelogId= #{catelogId}
+
+	</select>
+	<select id="findByName" resultType="com.cn.entity.TGoods"
+		parameterType="com.cn.entity.TGoods">
+		select * from t_goods where goodsDel='no' and goodsName like #{goodsName}
+		order by goodsCatelogId
+	</select>
+	<select id="findBygoodsCatelogId" resultType="com.cn.entity.TGoods"
+		parameterType="com.cn.entity.TGoods">
+		select * from t_goods where goodsDel='no' and
+		goodsCatelogId=#{goodsCatelogId} and goodsName
+		like #{goodsName} order by goodsCatelogId
+	</select>
+
+	<select id="findbycatelogId" resultType="com.cn.entity.TGoods"
+		parameterType="java.lang.Integer">
+		select * from t_goods where goodsDel='no' and goodsCatelogId= #{catelogId}
+		order by goodsCatelogId
+	</select>
+
+	<select id="findgoods" resultType="com.cn.entity.TGoods">
+		select * from t_goods
+		where goodsDel='no' order by goodsIsnottejia
+	</select>
+	<select id="findIndexyestejia" resultType="com.cn.entity.TGoods">
+		select * from t_goods
+		where goodsDel='no' and goodsIsnottejia='yes' order by goodsId desc
+
+	</select>
+	<select id="findIndexnotejia" resultType="com.cn.entity.TGoods">
+		select * from t_goods
+		where goodsDel='no' and goodsIsnottejia='no' order by goodsId desc
+
+	</select>
+	
+		<select id="findByFenlei" resultType="com.cn.entity.TGoods" parameterType="java.lang.Integer">
+		select * from t_goods
+		where goodsDel='no'  and goodsCatelogId= #{catelogId}
+		order by goodsCatelogId
+
+	</select>
+	
+
+	<select id="findAllYesTejia" resultType="com.cn.entity.TGoods">
+		select * from t_goods
+		where goodsDel='no' and goodsIsnottejia='yes' order by goodsCatelogId
+	</select>
+
+	<select id="findAllNoTejia" resultType="com.cn.entity.TGoods">
+		select * from t_goods
+		where goodsDel='no' and goodsIsnottejia='no' order by goodsCatelogId
+
+	</select>
+
+	<select id="findByGoodsId" resultType="com.cn.entity.TGoods"
+		parameterType="Integer">
+		select * from t_goods where goodsId=#{goodsId}
+	</select>
+	<insert id="save" parameterType="com.cn.entity.TGoods">
+
+
+
+
+		insert into
+
+		t_goods(goodsId,goodsCatelogId,goodsName,goodsMiaoshu,goodsPic,goodsShichangjia,goodsTejia,goodsIsnottejia,goodsKucun,goodsDel)
+		values
+		(goods_id.nextval,
+		#{goodsCatelogId,jdbcType=VARCHAR},
+		#{goodsName,jdbcType=VARCHAR},
+		#{goodsMiaoshu,jdbcType=VARCHAR},
+		#{goodsPic,jdbcType=VARCHAR},
+		#{goodsShichangjia,jdbcType=VARCHAR},
+		#{goodsTejia,jdbcType=VARCHAR},
+		#{goodsIsnottejia,jdbcType=VARCHAR},
+		#{goodsKucun,jdbcType=VARCHAR},
+		#{goodsDel,jdbcType=VARCHAR}
+
+		)
+	</insert>
+	<update id="update" parameterType="com.cn.entity.TGoods">
+		update t_goods set
+		goodsCatelogId=#{goodsCatelogId},goodsName=#{goodsName},goodsMiaoshu=#{goodsMiaoshu},
+		goodsPic=#{goodsPic},goodsShichangjia=#{goodsShichangjia},goodsTejia=#{goodsTejia},
+		goodsIsnottejia=#{goodsIsnottejia},goodsKucun=#{goodsKucun},goodsDel=#{goodsDel}
+
+		where goodsId = #{goodsId}
+	</update>
+	<update id="updateKucun" parameterType="com.cn.entity.TGoods">
+		update t_goods set
+		goodsKucun=#{goodsKucun},goodsTejia=#{goodsTejia}
+		where goodsId = #{goodsId}
+	</update>
+
+
+
+	<update id="bulkUpdate" parameterType="com.cn.entity.TGoods">
+		update t_goods set
+		goodsKucun=#{goodsKucun}
+		where goodsId = #{goodsId}
+	</update>
+
+
+</mapper>

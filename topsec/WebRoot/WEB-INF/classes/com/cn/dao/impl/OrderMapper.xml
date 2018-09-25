@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<!-- 还有一个很重要的作用，使用动态代理开发DAO，1. namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="OrderMapper">
+
+
+
+	<select id="find" resultType="com.cn.entity.TOrder"
+		parameterType="Integer">
+		select * from T_Order where orderUserId=#{userId}
+	</select>
+
+	<select id="findAll" resultType="com.cn.entity.TOrder">
+		select * from T_Order
+	</select>
+	<select id="findByTime" resultType="com.cn.entity.TOrder"
+		parameterType="com.cn.entity.TOrder">
+		select * from T_Order where orderDate between #{shijian_sta} and
+		#{shijian_end}
+
+	</select>
+
+
+	<select id="findByorderUserId" resultType="com.cn.entity.TOrder">
+		select * from T_Order order by orderUserId
+	</select>
+
+	<select id="findById" resultType="com.cn.entity.TOrder"
+		parameterType="Integer">
+		select * from T_Order where orderid=#{orderid}
+	</select>
+
+	<delete id="deleteByOrderId" parameterType="Integer">
+		delete T_Order where
+		orderid=#{orderId}
+
+	</delete>
+
+	<insert id="save" parameterType="com.cn.entity.TOrder">
+
+
+		insert into
+		t_order(orderId,orderBianhao,orderDate,orderZhuangtai,orderUserId,odderFukuangfangshi,odderSonghuodizhi,ORDERJINE)
+		values
+		(order_id.nextval,
+		#{orderBianhao,jdbcType=VARCHAR},
+		#{orderDate,jdbcType=VARCHAR},
+		#{orderZhuangtai,jdbcType=VARCHAR},
+		#{orderUserId,jdbcType=INTEGER},
+		#{odderFukuangfangshi,jdbcType=VARCHAR},
+		#{odderSonghuodizhi,jdbcType=VARCHAR},
+		#{orderJine,jdbcType=INTEGER}
+
+		)
+	</insert>
+	<select id="findByBianhao" resultType="com.cn.entity.TOrder"
+		parameterType="Object">
+		select * from T_Order where orderBianhao=#{bianhao}
+	</select>
+
+
+	<update id="UpdateZhuantai" parameterType="Integer">
+		update T_Order set
+		orderZhuangtai='yes' where orderid=#{orderId}
+
+
+
+	</update>
+
+	<delete id="deletebyorderId" parameterType="Integer">
+		delete
+		T_Order where orderid=#{orderId}
+
+	</delete>
+
+</mapper>

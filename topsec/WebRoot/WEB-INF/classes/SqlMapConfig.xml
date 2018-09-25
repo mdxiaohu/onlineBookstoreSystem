@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 全局映射器启用缓存 -->
+		<setting name="cacheEnabled" value="true" />
+		<setting name="useGeneratedKeys" value="true" />
+		<setting name="defaultExecutorType" value="REUSE" />
+	</settings>
+	<typeAliases>
+		<typeAlias type="com.cn.entity.TUser" alias="tuser" />
+		<typeAlias type="com.cn.entity.EbookEntry" alias="ebookEntry" />
+		<typeAlias type="com.cn.entity.EbookCategory" alias="ebookCategory" />
+		<typeAlias type="com.cn.entity.TAdmin" alias="admin" />
+		<typeAlias type="com.cn.entity.TGonggao" alias="gonggao" />
+		<typeAlias type="com.cn.entity.TCatelog" alias="catelog" />
+		<typeAlias type="com.cn.entity.TGoods" alias="goods" />
+		<typeAlias type="com.cn.entity.Tlianjie" alias="lianjie" />
+		<typeAlias type="com.cn.entity.TLiuyan" alias="liuyan" />
+		<typeAlias type="com.cn.entity.TOrder" alias="order" />
+		<typeAlias type="com.cn.entity.TOrderItem" alias="orderItem" />
+		<typeAlias type="com.cn.entity.TUser" alias="tuser" />
+
+	</typeAliases>
+
+</configuration>

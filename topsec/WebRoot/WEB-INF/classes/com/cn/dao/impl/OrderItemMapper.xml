@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace：命名空间，用于隔离sql -->
+<!-- 还有一个很重要的作用，使用动态代理开发DAO，1. namespace必须和Mapper接口类路径一致 -->
+<mapper namespace="OrderItemMapper">
+	<select id="find" resultType="com.cn.entity.TOrderItem">
+		select sum(goodsQuantity),goodsId from T_OrderItem group by goodsId order by
+		sum(goodsQuantity) desc
+	</select>
+
+
+	<select id="findByOrderId" resultType="com.cn.entity.TOrderItem"
+		parameterType="Integer">
+		select * from T_OrderItem where orderId=#{orderId}
+	</select>
+
+	<delete id="deletebyorderId" parameterType="Integer">
+		delete
+		T_OrderItem where orderid=#{orderId}
+
+	</delete>
+	<insert id="save" parameterType="com.cn.entity.TOrderItem">
+
+		insert into
+		t_orderitem(orderItemId,orderId,goodsId,goodsQuantity)
+		values
+		(orderitem_id.nextval,
+		#{orderId,jdbcType=INTEGER},
+		#{goodsId,jdbcType=INTEGER},
+		#{goodsQuantity,jdbcType=INTEGER}
+		)
+
+	</insert>
+
+</mapper>
